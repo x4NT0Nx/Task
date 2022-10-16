@@ -1,0 +1,40 @@
+# входные данные
+n_customers = 12
+n_first_id = 3
+
+
+def get_customer_counts_from_zero(num_cst):
+    """Вычисляет номер группы и количество клиентов (нумерация начинается с нуля)"""
+    gr_cust = {}
+    lst = []
+    
+    for i in range(num_cst): # вычисление номера группы
+        lst.append(sum(list(map(int, str(i))))) # алгоритм группировки клиентов путём суммирования цифр их ID
+        gr_cust[sum(list(map(int, str(i))))] = 0
+        
+    for i in lst: # вычисление количества клиентов в группе по списку с повторяющимися элементами
+        gr_cust[i] = lst.count(i)
+        
+    return gr_cust
+    
+    
+    def get_customer_counts(num_cst, num_fst_id):
+    """Вычисляет номер группы и количество клиентов"""
+    gr_cust = {}
+    lst = []
+    
+    for i in range(num_fst_id ,num_cst + num_fst_id): # вычисление номера группы
+        lst.append(sum(list(map(int, str(i))))) # алгоритм группировки клиентов путём суммирования цифр их ID
+        gr_cust[sum(list(map(int, str(i))))] = 0
+        
+    for i in lst: # вычисление количества клиентов в группе по списку с повторяющимися элементами
+        gr_cust[i] = lst.count(i)
+        
+    gr_cust = dict(sorted(gr_cust.items(), key = lambda x: x[0])) # сортировка словаря по ключам
+    
+    return gr_cust
+
+
+# ключ - номер группы, значение ключа - число покупателей в группе
+print(get_customer_counts_from_zero(n_customers))
+print(get_customer_counts(n_customers, n_first_id))
